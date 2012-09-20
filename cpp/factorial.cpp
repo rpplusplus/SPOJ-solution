@@ -16,6 +16,7 @@ public:
 		_length = 1;
 		_array = new vector<int>(5);
 		for (int i = 0; i < 5; ++i) (*_array)[i] = 0;
+		printf("%s\n", "空构造函数");
 	}
 
 	bigNumber(int n)
@@ -24,10 +25,12 @@ public:
 		_array = new vector<int>(5);
 		for (int i = 0; i < 5; ++i) (*_array)[i] = 0;
 		(*this) = n;
+		printf("%s\n", "int 构造函数");
 	}
 	~bigNumber()
 	{
 		delete _array;
+		printf("%s\n", "析构函数");
 	}
 
 	bigNumber operator * (bigNumber x)
@@ -50,12 +53,14 @@ public:
 
 		while (result.getArray()[result.getLength()-1] == 0 || result.getLength() != 1)
 			result.setLength( result.getLength() - 1);
+		printf("%s\n", "高乘高");
 		return result;
 	}	
 
 	bigNumber operator * (int x)
 	{
 		bigNumber _x( x );
+		printf("%s\n", "高乘低");
 		return (*this) * _x;
 	}
 
@@ -67,6 +72,8 @@ public:
 			(*_array)[_length++] = x % maxn;
 			x /= maxn;
 		}
+		printf("%s\n", "整数赋值");
+		return *this;
 	}
 
 	void setLength(int _len)
